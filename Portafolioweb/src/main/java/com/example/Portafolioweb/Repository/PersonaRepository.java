@@ -7,13 +7,11 @@ package com.example.Portafolioweb.Repository;
 
 import com.example.Portafolioweb.Entity.Persona;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Arai
  */
-@Repository
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
    

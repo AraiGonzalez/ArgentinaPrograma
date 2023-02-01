@@ -5,8 +5,14 @@
  */
 package com.example.Portafolioweb.Entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +23,7 @@ import org.hibernate.annotations.GenericGenerator;
  *
  * @author Arai
  */
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,5 +34,9 @@ public class Skills {
    private String tecnologia;
    private String url_icon;
    private int porcentaje;
-   private Persona persona_id;
+   @ManyToOne (fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   @JoinColumn(name = "persona_id", insertable = false, updatable = false)
+   private Persona persona;
+   @Column(name = "persona_id")
+   private String persona_id;
 }

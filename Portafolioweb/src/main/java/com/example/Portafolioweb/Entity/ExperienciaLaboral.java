@@ -6,7 +6,13 @@
 package com.example.Portafolioweb.Entity;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +22,7 @@ import lombok.Setter;
  *
  * @author Arai
  */
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,8 +33,12 @@ public class ExperienciaLaboral {
     private String nombredeEmpresa;
     private String puesto;
     private String descripcion;
-    private Date fechaInicio;
     private Date fechaFinal;
-    private Persona persona_id;
     private String tipoEmpleo;
+    @ManyToOne (fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "persona_id", insertable = false, updatable = false)
+    private Persona persona;
+    @Column(name = "persona_id")
+    private String persona_id;
+   
 }
